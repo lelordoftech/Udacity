@@ -11824,6 +11824,11 @@ div#notebook {
 <span class="n">X_train_in</span><span class="p">,</span> <span class="n">y_train</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;features&#39;</span><span class="p">],</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;labels&#39;</span><span class="p">]</span>
 <span class="n">X_valid_in</span><span class="p">,</span> <span class="n">y_valid</span> <span class="o">=</span> <span class="n">valid</span><span class="p">[</span><span class="s1">&#39;features&#39;</span><span class="p">],</span> <span class="n">valid</span><span class="p">[</span><span class="s1">&#39;labels&#39;</span><span class="p">]</span>
 <span class="n">X_test_in</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">test</span><span class="p">[</span><span class="s1">&#39;features&#39;</span><span class="p">],</span> <span class="n">test</span><span class="p">[</span><span class="s1">&#39;labels&#39;</span><span class="p">]</span>
+
+<span class="c1"># free memory</span>
+<span class="k">del</span> <span class="n">train</span>
+<span class="k">del</span> <span class="n">valid</span>
+<span class="k">del</span> <span class="n">test</span>
 </pre></div>
 
 </div>
@@ -11886,6 +11891,12 @@ div#notebook {
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of testing examples =&quot;</span><span class="p">,</span> <span class="n">n_test</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Image data shape =&quot;</span><span class="p">,</span> <span class="n">image_shape</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of classes =&quot;</span><span class="p">,</span> <span class="n">n_classes</span><span class="p">)</span>
+
+<span class="c1"># free memory</span>
+<span class="k">del</span> <span class="n">n_train</span>
+<span class="k">del</span> <span class="n">n_validation</span>
+<span class="k">del</span> <span class="n">n_test</span>
+<span class="k">del</span> <span class="n">image_shape</span>
 </pre></div>
 
 </div>
@@ -11947,12 +11958,14 @@ Number of classes = 43
 <span class="o">%</span><span class="k">matplotlib</span> inline
 
 <span class="c1">#index = random.randint(0, len(X_train_in))</span>
-<span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">image</span> <span class="o">=</span> <span class="n">X_train_in</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">a</span><span class="o">=</span><span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">a</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">y_train</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X_train_in</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">squeeze</span><span class="p">())</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">y_train</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
+<span class="c1"># free memory</span>
+<span class="k">del</span> <span class="n">fig</span>
+<span class="k">del</span> <span class="n">a</span>
 </pre></div>
 
 </div>
@@ -11966,80 +11979,130 @@ Number of classes = 43
 <div class="output_area">
 <div class="prompt"></div>
 
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>41
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-<div class="prompt"></div>
-
 
 
 <div class="output_png output_subarea ">
-<img src="data:image/png;base64,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
+<img src="data:image/png;base64,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
 "
 >
 </div>
@@ -12143,14 +12206,17 @@ B5SdsgeUnbIHlJ2yB5SdsgeUnbIHlJ2yB5SdsgeU/wdyPVD7JdiZAgAAAABJRU5ErkJggg==
 <span class="c1"># Plot image before gray scale</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">a</span><span class="o">=</span><span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">imgplot</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X_train_in</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">squeeze</span><span class="p">())</span>
 <span class="n">a</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Before&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X_train_in</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">squeeze</span><span class="p">())</span>
 <span class="c1"># Plot image after gray scale</span>
 <span class="n">a</span><span class="o">=</span><span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">imgplot</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X_train_gray</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
 <span class="n">a</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;After&#39;</span><span class="p">)</span>
-
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X_train_gray</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;examples/grayscale.png&#39;</span><span class="p">)</span>
+
+<span class="c1"># free memory</span>
+<span class="k">del</span> <span class="n">fig</span>
+<span class="k">del</span> <span class="n">a</span>
 </pre></div>
 
 </div>
@@ -12385,14 +12451,17 @@ REnQgi6EECVBC7oQQpQELehCCFEStKALIURJ0IIuhBAl4f8BrSJeFR2LWQYAAAAASUVORK5CYII=
 <span class="c1"># Plot image before normalization</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">a</span><span class="o">=</span><span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">imgplot</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X_train_gray</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
 <span class="n">a</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Before&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X_train_gray</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
 <span class="c1"># Plot image after normalization</span>
 <span class="n">a</span><span class="o">=</span><span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">imgplot</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
 <span class="n">a</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;After&#39;</span><span class="p">)</span>
-
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;examples/normalization.png&#39;</span><span class="p">)</span>
+
+<span class="c1"># free memory</span>
+<span class="k">del</span> <span class="n">fig</span>
+<span class="k">del</span> <span class="n">a</span>
 </pre></div>
 
 </div>
@@ -12565,7 +12634,7 @@ JBPq0EVEMqEOXUQkE+rQRUQyoQ5dRCQT6tBFRDKhDl1EJBP/DydV+/7yiPrMAAAAAElFTkSuQmCC
 <span class="kn">from</span> <span class="nn">tqdm</span> <span class="k">import</span> <span class="n">tqdm</span>
 <span class="kn">import</span> <span class="nn">os</span>
 
-<span class="n">num_data_train</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">num_data_train</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">left_training_file</span> <span class="o">=</span> <span class="s1">&#39;traffic-signs-data/train_left.p&#39;</span>
 <span class="n">right_training_file</span> <span class="o">=</span> <span class="s1">&#39;traffic-signs-data/train_right.p&#39;</span>
 <span class="n">X_train_left</span> <span class="o">=</span> <span class="p">[]</span>
@@ -12610,39 +12679,6 @@ JBPq0EVEMqEOXUQkE+rQRUQyoQ5dRCQT6tBFRDKhDl1EJBP/DydV+/7yiPrMAAAAAElFTkSuQmCC
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt"></div>
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>  1%|          | 174/34799 [00:00&lt;00:19, 1735.36it/s]</pre>
-</div>
-</div>
-
-<div class="output_area">
-<div class="prompt"></div>
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Rotate 15 degree to left
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-<div class="prompt"></div>
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>100%|██████████| 34799/34799 [53:32&lt;00:00,  5.38it/s]
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -12652,12 +12688,16 @@ JBPq0EVEMqEOXUQkE+rQRUQyoQ5dRCQT6tBFRDKhDl1EJBP/DydV+/7yiPrMAAAAAElFTkSuQmCC
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Plot image after rotation</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">a</span><span class="o">=</span><span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">imgplot</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
 <span class="n">a</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Before&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
 <span class="n">a</span><span class="o">=</span><span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">imgplot</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X_train_left</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
 <span class="n">a</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;After&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X_train_left</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;examples/rotateLeft.png&#39;</span><span class="p">)</span>
+
+<span class="c1"># free memory</span>
+<span class="k">del</span> <span class="n">fig</span>
+<span class="k">del</span> <span class="n">a</span>
 </pre></div>
 
 </div>
@@ -12906,39 +12946,6 @@ CRrQhRCiJmhAF0KImqABXQghaoIGdCGEqAn/DzL9MkwJq/Z1AAAAAElFTkSuQmCC
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt"></div>
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>  0%|          | 0/34799 [00:00&lt;?, ?it/s]</pre>
-</div>
-</div>
-
-<div class="output_area">
-<div class="prompt"></div>
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Rotate 15 degree to right
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-<div class="prompt"></div>
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>100%|██████████| 34799/34799 [53:03&lt;00:00,  5.57it/s]
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -12948,12 +12955,16 @@ CRrQhRCiJmhAF0KImqABXQghaoIGdCGEqAn/DzL9MkwJq/Z1AAAAAElFTkSuQmCC
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Plot image after rotation</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">a</span><span class="o">=</span><span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">imgplot</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
 <span class="n">a</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Before&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
 <span class="n">a</span><span class="o">=</span><span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">imgplot</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X_train_right</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
 <span class="n">a</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;After&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X_train_right</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;examples/rotateRight.png&#39;</span><span class="p">)</span>
+
+<span class="c1"># free memory</span>
+<span class="k">del</span> <span class="n">fig</span>
+<span class="k">del</span> <span class="n">a</span>
 </pre></div>
 
 </div>
@@ -13190,6 +13201,9 @@ QmCC
 <span class="n">y_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_train_double</span><span class="p">)</span>
 
 <span class="n">X_train</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">reshape</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">y_train</span><span class="p">),</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+
+<span class="c1"># free memmory</span>
+<span class="k">del</span> <span class="n">y_train_double</span>
 </pre></div>
 
 </div>
@@ -13205,16 +13219,20 @@ QmCC
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Plot original image</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">a</span><span class="o">=</span><span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">imgplot</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
 <span class="n">a</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Original&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
 <span class="c1"># Plot image before rotate left</span>
 <span class="n">a</span><span class="o">=</span><span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">imgplot</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y_train</span><span class="p">)</span><span class="o">/</span><span class="mi">3</span><span class="p">)]</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
 <span class="n">a</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Left&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y_train</span><span class="p">)</span><span class="o">/</span><span class="mi">3</span><span class="p">)]</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
 <span class="c1"># Plot image after rotate right</span>
 <span class="n">a</span><span class="o">=</span><span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">imgplot</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y_train</span><span class="p">)</span><span class="o">/</span><span class="mi">3</span><span class="o">*</span><span class="mi">2</span><span class="p">)]</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
 <span class="n">a</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Right&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y_train</span><span class="p">)</span><span class="o">/</span><span class="mi">3</span><span class="o">*</span><span class="mi">2</span><span class="p">)]</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+
+<span class="c1"># free memory</span>
+<span class="k">del</span> <span class="n">fig</span>
+<span class="k">del</span> <span class="n">a</span>
 </pre></div>
 
 </div>
@@ -13224,17 +13242,6 @@ QmCC
 <div class="output_wrapper">
 <div class="output">
 
-
-<div class="output_area">
-<div class="prompt output_prompt">Out[15]:</div>
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.text.Text at 0x7fa1f31ec898&gt;</pre>
-</div>
-
-</div>
 
 <div class="output_area">
 <div class="prompt"></div>
@@ -13435,6 +13442,15 @@ OvQgCIKG8P8BIxV/FhJugecAAAAASUVORK5CYII=
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Train,-Validate-and-Test-the-Model">Train, Validate and Test the Model<a class="anchor-link" href="#Train,-Validate-and-Test-the-Model">&#182;</a></h3>
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[16]:</div>
@@ -13448,8 +13464,10 @@ OvQgCIKG8P8BIxV/FhJugecAAAAASUVORK5CYII=
 <span class="n">EPOCHS</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="n">BATCH_SIZE</span> <span class="o">=</span> <span class="mi">128</span>
 
+<span class="n">keep_prob</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span> <span class="c1"># probability to keep units</span>
+
 <span class="k">def</span> <span class="nf">conv2d</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">W</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">strides</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">conv2d</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">W</span><span class="p">,</span> <span class="n">strides</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">strides</span><span class="p">,</span> <span class="n">strides</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;VALID&#39;</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">conv2d</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">W</span><span class="p">,</span> <span class="n">strides</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">strides</span><span class="p">,</span> <span class="n">strides</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;SAME&#39;</span><span class="p">)</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">bias_add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
@@ -13458,71 +13476,104 @@ OvQgCIKG8P8BIxV/FhJugecAAAAASUVORK5CYII=
         <span class="n">x</span><span class="p">,</span>
         <span class="n">ksize</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
         <span class="n">strides</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-        <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;VALID&#39;</span><span class="p">)</span>
+        <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;SAME&#39;</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">LeNet</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>    
+<span class="k">def</span> <span class="nf">LeNet</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">keep_prob</span><span class="p">):</span>    
     <span class="c1"># Arguments used for tf.truncated_normal, randomly defines variables for the weights and biases for each layer</span>
     <span class="n">mu</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">sigma</span> <span class="o">=</span> <span class="mf">0.1</span>
     
     <span class="c1"># Store layers weight &amp; bias</span>
     <span class="n">weights</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s1">&#39;wc1&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">truncated_normal</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">X_train</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="mi">6</span><span class="p">),</span> <span class="n">mean</span> <span class="o">=</span> <span class="n">mu</span><span class="p">,</span> <span class="n">stddev</span> <span class="o">=</span> <span class="n">sigma</span><span class="p">)),</span>
-        <span class="s1">&#39;wc2&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">truncated_normal</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span> <span class="n">mean</span> <span class="o">=</span> <span class="n">mu</span><span class="p">,</span> <span class="n">stddev</span> <span class="o">=</span> <span class="n">sigma</span><span class="p">)),</span>
-        <span class="s1">&#39;wd1&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">truncated_normal</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">240</span><span class="p">),</span> <span class="n">mean</span> <span class="o">=</span> <span class="n">mu</span><span class="p">,</span> <span class="n">stddev</span> <span class="o">=</span> <span class="n">sigma</span><span class="p">)),</span>
-        <span class="s1">&#39;wd2&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">truncated_normal</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">240</span><span class="p">,</span> <span class="mi">120</span><span class="p">),</span> <span class="n">mean</span> <span class="o">=</span> <span class="n">mu</span><span class="p">,</span> <span class="n">stddev</span> <span class="o">=</span> <span class="n">sigma</span><span class="p">)),</span>
+        <span class="s1">&#39;wc1&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">truncated_normal</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">X_train</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="mi">32</span><span class="p">),</span> <span class="n">mean</span> <span class="o">=</span> <span class="n">mu</span><span class="p">,</span> <span class="n">stddev</span> <span class="o">=</span> <span class="n">sigma</span><span class="p">)),</span>
+        <span class="s1">&#39;wc2&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">truncated_normal</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">64</span><span class="p">),</span> <span class="n">mean</span> <span class="o">=</span> <span class="n">mu</span><span class="p">,</span> <span class="n">stddev</span> <span class="o">=</span> <span class="n">sigma</span><span class="p">)),</span>
+        <span class="s1">&#39;wc3&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">truncated_normal</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">128</span><span class="p">),</span> <span class="n">mean</span> <span class="o">=</span> <span class="n">mu</span><span class="p">,</span> <span class="n">stddev</span> <span class="o">=</span> <span class="n">sigma</span><span class="p">)),</span>
+        <span class="s1">&#39;wd1&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">truncated_normal</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">14336</span><span class="p">,</span> <span class="mi">400</span><span class="p">),</span> <span class="n">mean</span> <span class="o">=</span> <span class="n">mu</span><span class="p">,</span> <span class="n">stddev</span> <span class="o">=</span> <span class="n">sigma</span><span class="p">)),</span>
+        <span class="s1">&#39;wd2&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">truncated_normal</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">120</span><span class="p">),</span> <span class="n">mean</span> <span class="o">=</span> <span class="n">mu</span><span class="p">,</span> <span class="n">stddev</span> <span class="o">=</span> <span class="n">sigma</span><span class="p">)),</span>
         <span class="s1">&#39;wd3&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">truncated_normal</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">120</span><span class="p">,</span> <span class="mi">84</span><span class="p">),</span> <span class="n">mean</span> <span class="o">=</span> <span class="n">mu</span><span class="p">,</span> <span class="n">stddev</span> <span class="o">=</span> <span class="n">sigma</span><span class="p">)),</span>
         <span class="s1">&#39;out&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">truncated_normal</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">84</span><span class="p">,</span> <span class="n">n_classes</span><span class="p">),</span> <span class="n">mean</span> <span class="o">=</span> <span class="n">mu</span><span class="p">,</span> <span class="n">stddev</span> <span class="o">=</span> <span class="n">sigma</span><span class="p">))}</span>
 
     <span class="n">biases</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s1">&#39;bc1&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">6</span><span class="p">])),</span>
-        <span class="s1">&#39;bc2&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">16</span><span class="p">])),</span>
-        <span class="s1">&#39;bd1&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">240</span><span class="p">])),</span>
+        <span class="s1">&#39;bc1&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">32</span><span class="p">])),</span>
+        <span class="s1">&#39;bc2&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">64</span><span class="p">])),</span>
+        <span class="s1">&#39;bc3&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">128</span><span class="p">])),</span>
+        <span class="s1">&#39;bd1&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">400</span><span class="p">])),</span>
         <span class="s1">&#39;bd2&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">120</span><span class="p">])),</span>
         <span class="s1">&#39;bd3&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">84</span><span class="p">])),</span>
         <span class="s1">&#39;out&#39;</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">n_classes</span><span class="p">]))}</span>
 
-    <span class="c1"># SOLUTION: Layer 1: Convolutional. Input = 32x32x3. Output = 28x28x6.</span>
+    <span class="c1"># SOLUTION: Layer 1: Convolutional. Input = 32x32x1. Output = 32x32x32.</span>
     <span class="n">conv1</span> <span class="o">=</span> <span class="n">conv2d</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">weights</span><span class="p">[</span><span class="s1">&#39;wc1&#39;</span><span class="p">],</span> <span class="n">biases</span><span class="p">[</span><span class="s1">&#39;bc1&#39;</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;conv1            &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">conv1</span><span class="o">.</span><span class="n">get_shape</span><span class="p">()))</span>
 
     <span class="c1"># SOLUTION: Activation.</span>
     <span class="n">conv1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">conv1</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;relu1            &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">conv1</span><span class="o">.</span><span class="n">get_shape</span><span class="p">()))</span>
 
-    <span class="c1"># SOLUTION: Pooling. Input = 28x28x6. Output = 14x14x6.</span>
+    <span class="c1"># SOLUTION: Pooling. Input = 32x32x32. Output = 16x16x32.</span>
     <span class="n">conv1</span> <span class="o">=</span> <span class="n">maxpool2d</span><span class="p">(</span><span class="n">conv1</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;maxpool2d1       &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">conv1</span><span class="o">.</span><span class="n">get_shape</span><span class="p">()))</span>
 
-    <span class="c1"># SOLUTION: Layer 2: Convolutional. Output = 10x10x16.</span>
+    <span class="c1"># SOLUTION: Layer 2: Convolutional. Input = 16x16x32. Output = 16x16x64.</span>
     <span class="n">conv2</span> <span class="o">=</span> <span class="n">conv2d</span><span class="p">(</span><span class="n">conv1</span><span class="p">,</span> <span class="n">weights</span><span class="p">[</span><span class="s1">&#39;wc2&#39;</span><span class="p">],</span> <span class="n">biases</span><span class="p">[</span><span class="s1">&#39;bc2&#39;</span><span class="p">])</span>
-    
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;conv2            &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">conv2</span><span class="o">.</span><span class="n">get_shape</span><span class="p">()))</span>
+
     <span class="c1"># SOLUTION: Activation.</span>
     <span class="n">conv2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">conv2</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;relu2            &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">conv2</span><span class="o">.</span><span class="n">get_shape</span><span class="p">()))</span>
 
-    <span class="c1"># SOLUTION: Pooling. Input = 10x10x16. Output = 5x5x16.</span>
+    <span class="c1"># SOLUTION: Pooling. Input = 16x16x64. Output = 8x8x64.</span>
     <span class="n">conv2</span> <span class="o">=</span> <span class="n">maxpool2d</span><span class="p">(</span><span class="n">conv2</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;maxpool2d2       &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">conv2</span><span class="o">.</span><span class="n">get_shape</span><span class="p">()))</span>
 
-    <span class="c1"># SOLUTION: Flatten. Input = 5x5x16. Output = 400.</span>
-    <span class="n">fc0</span>   <span class="o">=</span> <span class="n">flatten</span><span class="p">(</span><span class="n">conv2</span><span class="p">)</span>
+    <span class="c1"># SOLUTION: Layer 3: Convolutional. Input = 8x8x64. Output = 8x8x128.</span>
+    <span class="n">conv3</span> <span class="o">=</span> <span class="n">conv2d</span><span class="p">(</span><span class="n">conv2</span><span class="p">,</span> <span class="n">weights</span><span class="p">[</span><span class="s1">&#39;wc3&#39;</span><span class="p">],</span> <span class="n">biases</span><span class="p">[</span><span class="s1">&#39;bc3&#39;</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;conv3            &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">conv3</span><span class="o">.</span><span class="n">get_shape</span><span class="p">()))</span>
 
-    <span class="c1"># SOLUTION: Layer 3: Fully Connected. Input = 400. Output = 240.</span>
+    <span class="c1"># SOLUTION: Activation.</span>
+    <span class="n">conv3</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">conv3</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;relu3            &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">conv3</span><span class="o">.</span><span class="n">get_shape</span><span class="p">()))</span>
+
+    <span class="c1"># SOLUTION: Pooling. Input = 8x8x128. Output = 4x4x128.</span>
+    <span class="n">conv3</span> <span class="o">=</span> <span class="n">maxpool2d</span><span class="p">(</span><span class="n">conv3</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;maxpool2d 3      &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">conv3</span><span class="o">.</span><span class="n">get_shape</span><span class="p">()))</span>
+
+    <span class="c1"># SOLUTION: Flatten. Input = 5x5x16. Output = 7872.</span>
+    <span class="c1"># 16x16x32 | 8x8x64 | 4x4x128 = 14336</span>
+    <span class="n">fc0</span>   <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">flatten</span><span class="p">(</span><span class="n">conv1</span><span class="p">),</span> <span class="n">flatten</span><span class="p">(</span><span class="n">conv2</span><span class="p">),</span> <span class="n">flatten</span><span class="p">(</span><span class="n">conv3</span><span class="p">)],</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;concat           &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">fc0</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+    
+    <span class="c1"># SOLUTION: Drop-out. Input = 14336. Output = 7168</span>
+    <span class="n">fc0</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">fc0</span><span class="p">,</span> <span class="n">keep_prob</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;dropout          &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">fc0</span><span class="o">.</span><span class="n">get_shape</span><span class="p">()))</span>
+
+    <span class="c1"># SOLUTION: Layer 4: Fully Connected. Input = 7168. Output = 400.</span>
     <span class="n">fc1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">fc0</span><span class="p">,</span> <span class="n">weights</span><span class="p">[</span><span class="s1">&#39;wd1&#39;</span><span class="p">]),</span> <span class="n">biases</span><span class="p">[</span><span class="s1">&#39;bd1&#39;</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;full connected 1 &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">fc1</span><span class="o">.</span><span class="n">get_shape</span><span class="p">()))</span>
 
     <span class="c1"># SOLUTION: Activation.</span>
     <span class="n">fc1</span>    <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">fc1</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;relu &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">fc1</span><span class="o">.</span><span class="n">get_shape</span><span class="p">()))</span>
 
-    <span class="c1"># SOLUTION: Layer 4: Fully Connected. Input = 240. Output = 120.</span>
+    <span class="c1"># SOLUTION: Layer 5: Fully Connected. Input = 400. Output = 120.</span>
     <span class="n">fc2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">fc1</span><span class="p">,</span> <span class="n">weights</span><span class="p">[</span><span class="s1">&#39;wd2&#39;</span><span class="p">]),</span> <span class="n">biases</span><span class="p">[</span><span class="s1">&#39;bd2&#39;</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;full connected 2 &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">fc2</span><span class="o">.</span><span class="n">get_shape</span><span class="p">()))</span>
     
     <span class="c1"># SOLUTION: Activation.</span>
     <span class="n">fc2</span>    <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">fc2</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;relu &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">fc2</span><span class="o">.</span><span class="n">get_shape</span><span class="p">()))</span>
 
-    <span class="c1"># SOLUTION: Layer 5: Fully Connected. Input = 120. Output = 84.</span>
+    <span class="c1"># SOLUTION: Layer 6: Fully Connected. Input = 120. Output = 84.</span>
     <span class="n">fc3</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">fc2</span><span class="p">,</span> <span class="n">weights</span><span class="p">[</span><span class="s1">&#39;wd3&#39;</span><span class="p">]),</span> <span class="n">biases</span><span class="p">[</span><span class="s1">&#39;bd3&#39;</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;full connected 3 &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">fc3</span><span class="o">.</span><span class="n">get_shape</span><span class="p">()))</span>
     
     <span class="c1"># SOLUTION: Activation.</span>
     <span class="n">fc3</span>    <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">fc3</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;relu &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">fc3</span><span class="o">.</span><span class="n">get_shape</span><span class="p">()))</span>
 
-    <span class="c1"># SOLUTION: Layer 5: Fully Connected. Input = 84. Output = n_classes.</span>
+    <span class="c1"># SOLUTION: Layer 7: Fully Connected. Input = 84. Output = n_classes.</span>
     <span class="n">logits</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">fc3</span><span class="p">,</span> <span class="n">weights</span><span class="p">[</span><span class="s1">&#39;out&#39;</span><span class="p">]),</span> <span class="n">biases</span><span class="p">[</span><span class="s1">&#39;out&#39;</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;full connected  4 &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">logits</span><span class="o">.</span><span class="n">get_shape</span><span class="p">()))</span>
     
     <span class="k">return</span> <span class="n">logits</span>
 </pre></div>
@@ -13531,15 +13582,6 @@ OvQgCIKG8P8BIxV/FhJugecAAAAASUVORK5CYII=
 </div>
 </div>
 
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Train,-Validate-and-Test-the-Model">Train, Validate and Test the Model<a class="anchor-link" href="#Train,-Validate-and-Test-the-Model">&#182;</a></h3>
-</div>
-</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -13609,7 +13651,7 @@ sets imply underfitting. A high accuracy on the training set but low accuracy on
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">rate</span> <span class="o">=</span> <span class="mf">0.001</span>
 
-<span class="n">logits</span> <span class="o">=</span> <span class="n">LeNet</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">logits</span> <span class="o">=</span> <span class="n">LeNet</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">keep_prob</span><span class="p">)</span>
 <span class="n">cross_entropy</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">softmax_cross_entropy_with_logits</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="n">one_hot_y</span><span class="p">,</span> <span class="n">logits</span><span class="o">=</span><span class="n">logits</span><span class="p">)</span>
 <span class="n">loss_operation</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="n">cross_entropy</span><span class="p">)</span>
 <span class="n">optimizer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">AdamOptimizer</span><span class="p">(</span><span class="n">learning_rate</span> <span class="o">=</span> <span class="n">rate</span><span class="p">)</span>
@@ -13617,6 +13659,39 @@ sets imply underfitting. A high accuracy on the training set but low accuracy on
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>conv1            (?, 32, 32, 32)
+relu1            (?, 32, 32, 32)
+maxpool2d1       (?, 16, 16, 32)
+conv2            (?, 16, 16, 64)
+relu2            (?, 16, 16, 64)
+maxpool2d2       (?, 8, 8, 64)
+conv3            (?, 8, 8, 128)
+relu3            (?, 8, 8, 128)
+maxpool2d 3      (?, 4, 4, 128)
+concat           (?, 14336)
+dropout          (?, 14336)
+full connected 1 (?, 400)
+relu (?, 400)
+full connected 2 (?, 120)
+relu (?, 120)
+full connected 3 (?, 84)
+relu (?, 84)
+full connected  4 (?, 43)
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -13645,7 +13720,7 @@ sets imply underfitting. A high accuracy on the training set but low accuracy on
     <span class="n">sess</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">get_default_session</span><span class="p">()</span>
     <span class="k">for</span> <span class="n">offset</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">num_examples</span><span class="p">,</span> <span class="n">BATCH_SIZE</span><span class="p">):</span>
         <span class="n">batch_x</span><span class="p">,</span> <span class="n">batch_y</span> <span class="o">=</span> <span class="n">X_data</span><span class="p">[</span><span class="n">offset</span><span class="p">:</span><span class="n">offset</span><span class="o">+</span><span class="n">BATCH_SIZE</span><span class="p">],</span> <span class="n">y_data</span><span class="p">[</span><span class="n">offset</span><span class="p">:</span><span class="n">offset</span><span class="o">+</span><span class="n">BATCH_SIZE</span><span class="p">]</span>
-        <span class="n">accuracy</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">accuracy_operation</span><span class="p">,</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">batch_x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">batch_y</span><span class="p">})</span>
+        <span class="n">accuracy</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">accuracy_operation</span><span class="p">,</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">batch_x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">batch_y</span><span class="p">,</span> <span class="n">keep_prob</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
         <span class="n">total_accuracy</span> <span class="o">+=</span> <span class="p">(</span><span class="n">accuracy</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">batch_x</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">total_accuracy</span> <span class="o">/</span> <span class="n">num_examples</span>
 </pre></div>
@@ -13684,11 +13759,10 @@ sets imply underfitting. A high accuracy on the training set but low accuracy on
             <span class="k">if</span> <span class="n">end</span> <span class="o">&gt;</span> <span class="n">num_examples</span><span class="p">:</span>
                 <span class="n">end</span> <span class="o">=</span> <span class="n">num_examples</span>
             <span class="n">batch_x</span><span class="p">,</span> <span class="n">batch_y</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">[</span><span class="n">offset</span><span class="p">:</span><span class="n">end</span><span class="p">],</span> <span class="n">y_train</span><span class="p">[</span><span class="n">offset</span><span class="p">:</span><span class="n">end</span><span class="p">]</span>
-            <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">training_operation</span><span class="p">,</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">batch_x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">batch_y</span><span class="p">})</span>
+            <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">training_operation</span><span class="p">,</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">batch_x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">batch_y</span><span class="p">,</span> <span class="n">keep_prob</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">})</span>
 
         <span class="n">validation_accuracy</span> <span class="o">=</span> <span class="n">evaluate</span><span class="p">(</span><span class="n">X_valid</span><span class="p">,</span> <span class="n">y_valid</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;EPOCH </span><span class="si">{}</span><span class="s2"> ...&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Validation Accuracy = </span><span class="si">{:.3f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">validation_accuracy</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;EPOCH </span><span class="si">{}</span><span class="s2"> Validation Accuracy = </span><span class="si">{:.3f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">validation_accuracy</span><span class="p">))</span>
         <span class="nb">print</span><span class="p">()</span>
 
     <span class="k">try</span><span class="p">:</span>
@@ -13720,7 +13794,7 @@ sets imply underfitting. A high accuracy on the training set but low accuracy on
 <div class="prompt"></div>
 
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>100%|██████████| 816/816 [01:19&lt;00:00, 10.26it/s]
+<pre>100%|██████████| 816/816 [18:40&lt;00:00,  1.21s/it]
 </pre>
 </div>
 </div>
@@ -13729,8 +13803,7 @@ sets imply underfitting. A high accuracy on the training set but low accuracy on
 <div class="prompt"></div>
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>EPOCH 1 ...
-Validation Accuracy = 0.847
+<pre>EPOCH 1 Validation Accuracy = 0.900
 
 </pre>
 </div>
@@ -13740,7 +13813,7 @@ Validation Accuracy = 0.847
 <div class="prompt"></div>
 
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>100%|██████████| 816/816 [01:22&lt;00:00, 11.55it/s]
+<pre>100%|██████████| 816/816 [18:41&lt;00:00,  1.21s/it]
 </pre>
 </div>
 </div>
@@ -13749,8 +13822,7 @@ Validation Accuracy = 0.847
 <div class="prompt"></div>
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>EPOCH 2 ...
-Validation Accuracy = 0.904
+<pre>EPOCH 2 Validation Accuracy = 0.930
 
 </pre>
 </div>
@@ -13760,7 +13832,7 @@ Validation Accuracy = 0.904
 <div class="prompt"></div>
 
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>100%|██████████| 816/816 [01:14&lt;00:00, 10.91it/s]
+<pre>100%|██████████| 816/816 [21:05&lt;00:00,  1.66s/it]
 </pre>
 </div>
 </div>
@@ -13769,8 +13841,7 @@ Validation Accuracy = 0.904
 <div class="prompt"></div>
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>EPOCH 3 ...
-Validation Accuracy = 0.918
+<pre>EPOCH 3 Validation Accuracy = 0.925
 
 </pre>
 </div>
@@ -13780,7 +13851,7 @@ Validation Accuracy = 0.918
 <div class="prompt"></div>
 
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>100%|██████████| 816/816 [01:14&lt;00:00, 10.89it/s]
+<pre>100%|██████████| 816/816 [23:49&lt;00:00,  1.59s/it]
 </pre>
 </div>
 </div>
@@ -13789,8 +13860,7 @@ Validation Accuracy = 0.918
 <div class="prompt"></div>
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>EPOCH 4 ...
-Validation Accuracy = 0.905
+<pre>EPOCH 4 Validation Accuracy = 0.929
 
 </pre>
 </div>
@@ -13800,7 +13870,7 @@ Validation Accuracy = 0.905
 <div class="prompt"></div>
 
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>100%|██████████| 816/816 [01:14&lt;00:00, 10.88it/s]
+<pre>100%|██████████| 816/816 [23:50&lt;00:00,  1.61s/it]
 </pre>
 </div>
 </div>
@@ -13809,8 +13879,7 @@ Validation Accuracy = 0.905
 <div class="prompt"></div>
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>EPOCH 5 ...
-Validation Accuracy = 0.898
+<pre>EPOCH 5 Validation Accuracy = 0.947
 
 </pre>
 </div>
@@ -13820,7 +13889,7 @@ Validation Accuracy = 0.898
 <div class="prompt"></div>
 
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>100%|██████████| 816/816 [01:14&lt;00:00, 11.29it/s]
+<pre>100%|██████████| 816/816 [24:32&lt;00:00,  1.59s/it]
 </pre>
 </div>
 </div>
@@ -13829,8 +13898,7 @@ Validation Accuracy = 0.898
 <div class="prompt"></div>
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>EPOCH 6 ...
-Validation Accuracy = 0.915
+<pre>EPOCH 6 Validation Accuracy = 0.944
 
 </pre>
 </div>
@@ -13840,7 +13908,7 @@ Validation Accuracy = 0.915
 <div class="prompt"></div>
 
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>100%|██████████| 816/816 [01:14&lt;00:00, 10.90it/s]
+<pre>100%|██████████| 816/816 [23:45&lt;00:00,  1.58s/it]
 </pre>
 </div>
 </div>
@@ -13849,8 +13917,7 @@ Validation Accuracy = 0.915
 <div class="prompt"></div>
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>EPOCH 7 ...
-Validation Accuracy = 0.921
+<pre>EPOCH 7 Validation Accuracy = 0.950
 
 </pre>
 </div>
@@ -13860,7 +13927,7 @@ Validation Accuracy = 0.921
 <div class="prompt"></div>
 
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>100%|██████████| 816/816 [01:14&lt;00:00, 10.89it/s]
+<pre>100%|██████████| 816/816 [21:04&lt;00:00,  1.22s/it]
 </pre>
 </div>
 </div>
@@ -13869,8 +13936,7 @@ Validation Accuracy = 0.921
 <div class="prompt"></div>
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>EPOCH 8 ...
-Validation Accuracy = 0.935
+<pre>EPOCH 8 Validation Accuracy = 0.952
 
 </pre>
 </div>
@@ -13880,7 +13946,7 @@ Validation Accuracy = 0.935
 <div class="prompt"></div>
 
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>100%|██████████| 816/816 [01:15&lt;00:00, 11.42it/s]
+<pre>100%|██████████| 816/816 [18:42&lt;00:00,  1.22s/it]
 </pre>
 </div>
 </div>
@@ -13889,8 +13955,7 @@ Validation Accuracy = 0.935
 <div class="prompt"></div>
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>EPOCH 9 ...
-Validation Accuracy = 0.931
+<pre>EPOCH 9 Validation Accuracy = 0.970
 
 </pre>
 </div>
@@ -13900,7 +13965,7 @@ Validation Accuracy = 0.931
 <div class="prompt"></div>
 
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>100%|██████████| 816/816 [01:15&lt;00:00, 11.27it/s]
+<pre>100%|██████████| 816/816 [18:44&lt;00:00,  1.21s/it]
 </pre>
 </div>
 </div>
@@ -13909,8 +13974,7 @@ Validation Accuracy = 0.931
 <div class="prompt"></div>
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>EPOCH 10 ...
-Validation Accuracy = 0.937
+<pre>EPOCH 10 Validation Accuracy = 0.950
 
 Model saved
 </pre>
@@ -13954,7 +14018,8 @@ Model saved
 <div class="prompt"></div>
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Test Accuracy = 0.924
+<pre>INFO:tensorflow:Restoring parameters from ./lenet
+Test Accuracy = 0.949
 </pre>
 </div>
 </div>
@@ -14010,11 +14075,15 @@ Model saved
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">total_new_image</span><span class="p">):</span>
     <span class="n">image</span> <span class="o">=</span> <span class="n">mpimg</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;traffic-signs-data/&#39;</span> <span class="o">+</span> <span class="n">new_images_name</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
     <span class="n">a</span><span class="o">=</span><span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">total_new_image</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">imgplot</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
     <span class="n">a</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">new_images_name</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
     <span class="n">new_images</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
 
 <span class="n">new_images</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">new_images</span><span class="p">)</span>
+
+<span class="c1"># free memory</span>
+<span class="k">del</span> <span class="n">fig</span>
+<span class="k">del</span> <span class="n">a</span>
 </pre></div>
 
 </div>
@@ -14736,18 +14805,22 @@ vNGU1yFuDIaGfYghhhjiNsNQK2aIIYYY4jbD0LAPMcQQQ9xmGBr2IYYYYojbDEPDPsQQQwxxm2Fo
 <span class="n">new_images_resize</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">new_images_resize</span><span class="p">)</span>
 
 <span class="c1"># Convert to gray scale</span>
-<span class="n">new_images_gray</span> <span class="o">=</span> <span class="n">grayScale</span><span class="p">(</span><span class="n">new_images_resize</span><span class="p">)</span>
+<span class="n">new_images_resize</span> <span class="o">=</span> <span class="n">grayScale</span><span class="p">(</span><span class="n">new_images_resize</span><span class="p">)</span>
 
 <span class="c1"># Normalization</span>
-<span class="n">new_images_gray</span> <span class="o">=</span> <span class="n">normalization</span><span class="p">(</span><span class="n">new_images_gray</span><span class="p">)</span>
+<span class="n">new_images_gray</span> <span class="o">=</span> <span class="n">normalization</span><span class="p">(</span><span class="n">new_images_resize</span><span class="p">)</span>
 
 <span class="c1"># Output new images</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">total_new_image</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">new_images_name</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">total_new_image</span><span class="p">):</span>
     <span class="n">a</span><span class="o">=</span><span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">total_new_image</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">imgplot</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">new_images_gray</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
     <span class="n">a</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">new_images_name</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">imgplot</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">new_images_gray</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+
+<span class="c1"># free memory</span>
+<span class="k">del</span> <span class="n">fig</span>
+<span class="k">del</span> <span class="n">a</span>
 </pre></div>
 
 </div>
@@ -15043,9 +15116,7 @@ ZZaBBDz6mQAAAABJRU5ErkJggg==
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
     <span class="n">saver</span><span class="o">.</span><span class="n">restore</span><span class="p">(</span><span class="n">sess</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">latest_checkpoint</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">))</span>
-    <span class="n">logit</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">logits</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span><span class="n">new_images_gray</span><span class="p">})</span>
-    <span class="c1">#logit = sess.run(tf.nn.softmax(logits, 1), feed_dict={x:new_images_gray})</span>
-
+    <span class="n">logit</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">logits</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">new_images_gray</span><span class="p">,</span> <span class="n">keep_prob</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Actual the Sign Type&quot;</span><span class="p">,</span> <span class="n">new_images_id</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Predict the Sign Type&quot;</span><span class="p">,</span> <span class="n">logit</span><span class="p">)</span>
 </pre></div>
@@ -15062,7 +15133,8 @@ ZZaBBDz6mQAAAABJRU5ErkJggg==
 <div class="prompt"></div>
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Actual the Sign Type [16 18 33 25 11]
+<pre>INFO:tensorflow:Restoring parameters from ./lenet
+Actual the Sign Type [16 18 33 25 11]
 Predict the Sign Type [16 18 33 25 11]
 </pre>
 </div>
@@ -15172,7 +15244,7 @@ a = np.array([[ 0.24879643,  0.07032244,  0.12641572,  0.34763842,  0.07893497,
 <span class="c1">### Feel free to use as many code cells as needed.</span>
 <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
     <span class="n">saver</span><span class="o">.</span><span class="n">restore</span><span class="p">(</span><span class="n">sess</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">latest_checkpoint</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">))</span>
-    <span class="n">logit</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">logits</span><span class="p">),</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span><span class="n">new_images_gray</span><span class="p">})</span>
+    <span class="n">logit</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">logits</span><span class="p">),</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">new_images_gray</span><span class="p">,</span> <span class="n">keep_prob</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
     <span class="n">top</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">top_k</span><span class="p">(</span><span class="n">logit</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">))</span>
 
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Top Predict the Sign Type&quot;</span><span class="p">,</span> <span class="n">top</span><span class="p">)</span>
@@ -15190,20 +15262,21 @@ a = np.array([[ 0.24879643,  0.07032244,  0.12641572,  0.34763842,  0.07893497,
 <div class="prompt"></div>
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Top Predict the Sign Type TopKV2(values=array([[  1.00000000e+00,   1.07609374e-15,   1.10355939e-16,
-          3.57893341e-18,   2.77840145e-18],
-       [  1.00000000e+00,   1.15439021e-18,   7.38123960e-26,
-          1.07318835e-28,   5.23752977e-29],
-       [  1.00000000e+00,   4.34840786e-09,   1.63380802e-11,
-          5.60437764e-13,   5.13581275e-15],
-       [  9.99576151e-01,   3.00802960e-04,   7.61954507e-05,
-          3.81932732e-05,   7.14333055e-06],
-       [  1.00000000e+00,   4.49106999e-14,   9.06293172e-16,
-          4.77857839e-17,   1.31068216e-19]], dtype=float32), indices=array([[16,  7, 40,  9, 10],
-       [18, 27, 26, 37,  4],
-       [33,  9, 35, 39, 14],
-       [25, 37, 11, 14, 18],
-       [11, 21, 30, 27, 19]], dtype=int32))
+<pre>INFO:tensorflow:Restoring parameters from ./lenet
+Top Predict the Sign Type TopKV2(values=array([[  1.00000000e+00,   2.02288858e-12,   7.23142097e-15,
+          7.79124675e-16,   1.38809695e-16],
+       [  1.00000000e+00,   1.03662747e-30,   1.09809966e-32,
+          8.08059768e-38,   0.00000000e+00],
+       [  1.00000000e+00,   1.48641529e-20,   3.78408352e-21,
+          2.55106715e-23,   2.49864434e-23],
+       [  9.99982476e-01,   8.77019829e-06,   6.59302623e-06,
+          1.84563953e-06,   2.63624202e-07],
+       [  1.00000000e+00,   8.32259863e-19,   1.49563443e-21,
+          4.20582201e-23,   3.80028124e-23]], dtype=float32), indices=array([[16,  7,  9, 40,  5],
+       [18, 26,  4, 25,  0],
+       [33, 39, 26, 25, 17],
+       [25, 14, 37, 38, 10],
+       [11, 30, 21, 18,  6]], dtype=int32))
 </pre>
 </div>
 </div>
@@ -15288,6 +15361,150 @@ a = np.array([[ 0.24879643,  0.07032244,  0.12641572,  0.34763842,  0.07893497,
             <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">activation</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,:,</span> <span class="n">featuremap</span><span class="p">],</span> <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;nearest&quot;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="n">activation_min</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">activation</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,:,</span> <span class="n">featuremap</span><span class="p">],</span> <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;nearest&quot;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
+    <span class="n">saver</span><span class="o">.</span><span class="n">restore</span><span class="p">(</span><span class="n">sess</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">latest_checkpoint</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">))</span>
+    <span class="n">outputFeatureMap</span><span class="p">(</span><span class="n">new_images_gray</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>INFO:tensorflow:Restoring parameters from ./lenet
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+<div class="prompt"></div>
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+H1tf8Wp6vNFPAAAAAElFTkSuQmCC
+"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
 
 </div>
