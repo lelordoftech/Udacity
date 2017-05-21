@@ -132,8 +132,10 @@ And I have some problem to contact and use AWS services for training.
 So I will try to increase EPOCHS, decrease LEARNING RATE and optimize BATCH SIZE later when I have changes.
 
 To reduce sample data, I used Max pooling for 3 layer Convolution.
+
 To help model can access to all lower layer, I merged all output of 3 layer Convolution.
 By this way, I see that my model is better.
+
 To prevent overfitting, I used Dropout with keep probability is 50%
 
 **4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.**
@@ -169,7 +171,9 @@ Link: http://benchmark.ini.rub.de/Dataset/GTSRB_Final_Test_Images.zip
 ![alt text][image12]
 
 The first image might be easy to classify because it look like a standard traffic sign.
+
 The sencond, third and fifth image might be difficult to classify because it have noise behind the traffic sign.
+
 The fourth image might be difficult to classify because it is not clearly and inclined to the right.
 
 **2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).**
