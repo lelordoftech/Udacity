@@ -36,7 +36,7 @@ Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/4
 
 You're reading it! and here is a link to my [project code](https://github.com/udacity/CarND-Traffic-Sign-Classifier-Project/blob/master/Traffic_Sign_Classifier.ipynb)
 
-Data Set Summary & Exploration
+## Data Set Summary & Exploration
 
 **1. Provide a basic summary of the data set. In the code, the analysis should be done using python, numpy and/or pandas methods rather than hardcoding results manually.**
 
@@ -69,6 +69,7 @@ Here is an example of a traffic sign image before and after grayscaling.
 
 As a last step, I normalized the image data because I want keep values roughly around a mean of zero.
 So it make it much easier for the optimizaton to proceed numerically.
+
 The formular is **(pixel - 128)/ 128**
 
 Here is an example of a traffic sign image before and after normalization
@@ -80,9 +81,13 @@ To add more data to the the data set, I used the rotation techniques with value 
 With this techniques, my model will learn more cases and it will improve the performance.
 
 Here is an example of an original image and an augmented image:
+
 Rotation to the **LEFT**
+
 ![alt text][image6]
+
 Rotation to the **RIGHT**
+
 ![alt text][image7]
 
 So I get an augmented data set with the size is increase 3 times: 34799*3=104397
@@ -120,6 +125,7 @@ To train the model, I used:
 * Batch size: 128
 * Epochs: 10
 * Learning rate: 0.001
+
 At this time, I used these values because my laptop is weak for calculation.
 It does not have GPU for model training.
 And I have some problem to contact and use AWS services for training.
@@ -144,15 +150,16 @@ To get the validation set accuracy to be at least 0.93, I try some process and c
 * Apply Dropout technique
 
 My final model results were:
-* training set accuracy of 0.996
-* validation set accuracy of 0.960
-* test set accuracy of 0.936
+* Training set accuracy of 0.996
+* Validation set accuracy of 0.960
+* Test set accuracy of 0.936
 
 ## Test a Model on New Images
 
 **1. Choose five German traffic signs found on the web and provide them in the report. For each image, discuss what quality or qualities might be difficult to classify.**
 
 Here are five German traffic signs that I found on the web:
+
 Link: http://benchmark.ini.rub.de/Dataset/GTSRB_Final_Test_Images.zip
 
 ![alt text][image8]
@@ -165,7 +172,7 @@ The first image might be easy to classify because it look like a standard traffi
 The sencond, third and fifth image might be difficult to classify because it have noise behind the traffic sign.
 The fourth image might be difficult to classify because it is not clearly and inclined to the right.
 
-** 2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).**
+**2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).**
 
 Here are the results of the prediction:
 
@@ -179,6 +186,7 @@ Here are the results of the prediction:
 
 The model was able to correctly guess 5 of the 5 traffic signs, which gives an accuracy of 100%.
 This compares favorably to the accuracy on the test set of 93.6%
+
 Maybe these samples is too easily for my model.
 I will try another samples later.
 
@@ -235,3 +243,9 @@ For the fifth image, the model is relatively sure that this is a stop sign (prob
 | .00000000000000008    | Double curve                                  |
 | .00000000000000003    | General caution                               |
 | .0000000000000000075  | Road work                                     |
+
+When I have free time I will come back and try other techniques to get higher validation accuracy, maybe more than 98%.
+
+**Reference:**
+* https://chatbotslife.com/german-sign-classification-using-deep-learning-neural-networks-98-8-solution-d05656bf51ad
+* http://navoshta.com/traffic-signs-classification/
